@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+// PUBLIC_INTERFACE
+test('renders Tic Tac Toe main headline', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const header = screen.getByRole('heading', { name: /tic tac toe/i });
+  expect(header).toBeInTheDocument();
 });
