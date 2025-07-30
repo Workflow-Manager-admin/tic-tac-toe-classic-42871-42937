@@ -1,0 +1,237 @@
+/* ========== Theme Variables ========== */
+:root {
+  --primary: #1976d2;
+  --accent: #ff9800;
+  --secondary: #ffffff;
+  --board-bg: #f5f7fa;
+  --board-border: #e3e3e3;
+  --square-size: clamp(60px, 13vw, 100px);
+  --square-gap: 12px;
+  --shadow: 0 4px 18px 0 rgba(25, 118, 210, 0.05);
+  --status-bg: #f1f8ff;
+  --status-border: #bbdefb;
+  --restart-bg: var(--primary);
+  --restart-text: #fff;
+}
+
+/* ========== App Layout ========== */
+.ttt-app-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ttt-outer-container {
+  box-shadow: var(--shadow);
+  background: var(--secondary);
+  padding: 30px 26px 22px 26px;
+  border-radius: 20px;
+  max-width: 98vw;
+  width: 392px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ttt-title {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 2.2rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* ========== Game Mode ========== */
+.ttt-mode-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-bottom: 8px;
+}
+.ttt-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.03em;
+}
+.ttt-mode-select {
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid var(--primary);
+  background: var(--secondary);
+  color: var(--primary);
+  border-radius: 6px;
+  padding: 3px 10px;
+  outline: none;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+/* ========== Status Display ========== */
+.ttt-status {
+  margin: 18px 0 10px 0;
+  background: var(--status-bg);
+  color: var(--primary);
+  font-weight: 700;
+  border: 1px solid var(--status-border);
+  border-radius: 12px;
+  min-height: 35px;
+  min-width: 180px;
+  font-size: 1.17rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.01em;
+  transition: background 0.25s;
+}
+
+/* ========== Game Board ========== */
+.ttt-board-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.ttt-board {
+  background: var(--board-bg);
+  display: grid;
+  grid-template-columns: repeat(3, var(--square-size));
+  grid-template-rows: repeat(3, var(--square-size));
+  gap: var(--square-gap);
+  border-radius: 16px;
+  border: 2px solid var(--board-border);
+  box-shadow: 0 2px 12px #e3e3e3;
+  min-height: calc(3 * var(--square-size) + 2 * var(--square-gap));
+  min-width: calc(3 * var(--square-size) + 2 * var(--square-gap));
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  transition: box-shadow 0.22s;
+}
+
+/* ========== Board Squares ========== */
+.ttt-square {
+  width: var(--square-size);
+  height: var(--square-size);
+  font-size: calc(var(--square-size) * 0.52);
+  font-weight: 800;
+  background: var(--secondary);
+  color: var(--primary);
+  border: 2.5px solid var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px #e3e3e3;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 
+    background 0.15s, 
+    color 0.13s, 
+    border 0.17s, 
+    box-shadow 0.12s;
+  outline: none;
+  user-select: none;
+}
+.ttt-square:hover,
+.ttt-square:focus {
+  background: var(--accent);
+  color: var(--secondary);
+  border-color: var(--accent);
+}
+.ttt-square[disabled] {
+  cursor: default;
+  background: #f3f3f3;
+  color: #bababa;
+  opacity: 0.7;
+}
+/* Win highlight */
+.square-win {
+  background: #ffe7ba !important;
+  color: var(--primary) !important;
+  border-color: var(--accent) !important;
+  animation: win-glow 0.84s linear alternate infinite;
+}
+@keyframes win-glow {
+  0%   { box-shadow: 0 0 7px #ff98003e, 0 2px 12px #e3e3e3; }
+  100% { box-shadow: 0 0 24px #ff9800b7, 0 2px 32px #ffe0b2; }
+}
+
+/* ========== Controls ========== */
+.ttt-controls {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto 0 auto;
+  width: 100%;
+}
+.ttt-restart-btn {
+  display: inline-block;
+  padding: 11px 36px;
+  background: var(--restart-bg);
+  color: var(--restart-text);
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 9px;
+  border: none;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  margin: 0;
+  transition: background 0.17s, transform 0.11s;
+  box-shadow: 0 2px 12px #e3e3e3;
+}
+.ttt-restart-btn:active {
+  background: #1763af;
+  transform: scale(0.98);
+}
+.ttt-restart-btn:disabled {
+  background: #a5c9ed;
+  color: #ffffffc7;
+  cursor: wait;
+}
+
+/* ========== Credits ========== */
+.ttt-credit {
+  margin-top: 20px;
+  font-size: 0.92rem;
+  color: #bdbdbd;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 480px) {
+  .ttt-outer-container {
+    padding: 11px 2px 10px 2px;
+    width: 99vw;
+    border-radius: 0;
+  }
+  .ttt-title {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+  .ttt-board {
+    --square-size: clamp(40px, 19vw, 64px);
+  }
+  .ttt-controls {
+    margin-top: 10px;
+  }
+  .ttt-credit {
+    margin-top: 13px;
+  }
+}
+
+/* Visually hidden (accessibility) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
